@@ -1,41 +1,68 @@
 import streamlit as st
 
+# ======================================
+# IMPORT STYLES
+# ======================================
 from styles.global_css import load_css
-from components.header import render_header
-from components.footer import render_footer
 
+# ======================================
+# IMPORT COMPONENTS
+# ======================================
+from components.header import show_header
+from components.footer import show_footer
+
+# ======================================
+# IMPORT PAGES
+# ======================================
 from pages.home import show_home
+from pages.ai_analyzer import show_ai_analyzer
 from pages.services import show_services
 from pages.about import show_about
-from pages.ai_analyzer import show_ai_analyzer
 
-# PAGE CONFIG
+# ======================================
+# PAGE CONFIGURATION
+# ======================================
 st.set_page_config(
     page_title="Genesis Digital",
     page_icon="🌐",
     layout="wide"
 )
 
-# LOAD CSS
+# ======================================
+# LOAD GLOBAL CSS
+# ======================================
 load_css()
 
+# ======================================
 # HEADER
-tabs = render_header()
+# ======================================
+tabs = show_header()
 
-# PAGES
+# ======================================
+# HOME PAGE
+# ======================================
 with tabs[0]:
     show_home()
 
+# ======================================
+# AI ANALYZER PAGE
+# ======================================
 with tabs[1]:
+    show_ai_analyzer()
+
+# ======================================
+# SERVICES PAGE
+# ======================================
+with tabs[2]:
     show_services()
 
-with tabs[2]:
+# ======================================
+# ABOUT PAGE
+# ======================================
+with tabs[3]:
     show_about()
 
-# AI PAGE ONLY AFTER LOGIN
-if st.session_state.logged_in:
-    with tabs[3]:
-        show_ai_analyzer()
-
+# ======================================
 # FOOTER
-render_footer()
+# ======================================
+show_footer()
